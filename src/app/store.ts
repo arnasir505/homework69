@@ -1,8 +1,12 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { showsReducer } from "../store/showsSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import { showsReducer } from '../store/showsSlice';
+import { searchReducer } from '../store/searchSlice';
 
 export const store = configureStore({
-  reducer: { shows: showsReducer},
+  reducer: {
+    shows: showsReducer,
+    search: searchReducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

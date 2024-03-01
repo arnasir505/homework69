@@ -17,4 +17,4 @@ const showsSlice = createSlice({
   reducers: {},
 });
 
-export const showsReducer = showsSlice.reducer
+export const showsReducer = showsSlice.reducer;
