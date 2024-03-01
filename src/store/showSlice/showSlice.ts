@@ -41,7 +41,7 @@ const showSlice = createSlice({
         const newShow = {
           name: show.name,
           rating: show.rating.average,
-          image: show.image.medium,
+          image: show.image ? show.image.medium : '',
           summary: show.summary,
           genres: show.genres,
         };
@@ -56,3 +56,4 @@ const showSlice = createSlice({
 
 export const showReducer = showSlice.reducer;
 export const selectShow = (state: RootState) => state.show.data;
+export const selectShowLoading = (state: RootState) => state.show.loading;
