@@ -12,29 +12,28 @@ const Search: React.FC = () => {
   const navigate = useNavigate();
   const tvShows = useAppSelector(selectTvShows);
 
-  const handleOnSearch = async (value: string, results: ApiShow[]) => {
-    // onSearch will have as the first callback parameter
-    // the string searched and for the second the results.
-    console.log(value, results);
-    dispatch(updateSearch(value));
+  const handleOnSearch = async (value: string) => {
+    await dispatch(updateSearch(value));
     await dispatch(fetchSearchResults());
   };
 
   const handleOnSelect = (item: ApiShow) => {
     const id = item.id.toString();
+    dispatch(updateSearch(''));
     navigate('/shows/' + id);
   };
 
   return (
     <div className='container'>
       <div className='row justify-content-center py-4'>
-        <div className='col-lg-4'>
+        <div className='col-lg-8 col-xl-6'>
           <p className='fs-5 mb-1'>Search for TV Show:</p>
           <ReactSearchAutocomplete
             items={tvShows}
             onSearch={handleOnSearch}
             onSelect={handleOnSelect}
-            styling={{zIndex: 1001}}
+            styling={{ zIndex: 1001 }}
+            autoFocus
           />
         </div>
       </div>

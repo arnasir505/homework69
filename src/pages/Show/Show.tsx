@@ -25,36 +25,46 @@ const Show: React.FC = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <div className='card'>
-          <div className='card-body clearfix'>
-            <img
-              src={
-                image
-                  ? image
-                  : 'https://fakeimg.pl/210x295?text=Poster&font=bebas'
-              }
-              alt='poster'
-              className='float-start me-3 poster'
-            />
-            <h2 className='card-title mb-1'>{name}</h2>
-            <span className='text-secondary me-1'>{genres.join(', ')}</span>
-            <br />
-            {rating ? (
-              <div className='d-flex'>
-                <Rating
-                  initialValue={rating}
-                  iconsCount={10}
-                  size={20}
-                  readonly
-                  allowFraction
-                  fillColorArray={fillColorArray}
+        <div className='row justify-content-center'>
+          <div className='col-lg-8 col-xl-6'>
+            <div className='card'>
+              <div className='card-body clearfix'>
+                <img
+                  src={
+                    image
+                      ? image
+                      : 'https://fakeimg.pl/210x295?text=Poster&font=bebas'
+                  }
+                  alt='poster'
+                  className='float-md-start mb-2 mb-md-0 me-md-3 poster'
                 />
-                <p className='fw-bold pt-1 ms-2 mb-0'>{rating}</p>
+                <h2 className='card-title mb-1'>{name}</h2>
+                {genres.length > 0 ? (
+                  <p className='text-secondary mb-0'>{genres.join(', ')}</p>
+                ) : null}
+                {rating ? (
+                  <div className='d-flex'>
+                    <Rating
+                      initialValue={rating}
+                      iconsCount={10}
+                      size={20}
+                      readonly
+                      allowFraction
+                      fillColorArray={fillColorArray}
+                    />
+                    <p className='fw-bold pt-1 ms-2 mb-0'>{rating}</p>
+                  </div>
+                ) : (
+                  <span>No rating</span>
+                )}
+                {summary ? (
+                  <p
+                    className='mt-2'
+                    dangerouslySetInnerHTML={{ __html: summary }}
+                  />
+                ) : null}
               </div>
-            ) : (
-              <span>No rating</span>
-            )}
-            <p className='mt-2' dangerouslySetInnerHTML={{ __html: summary }} />
+            </div>
           </div>
         </div>
       )}
