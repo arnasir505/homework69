@@ -1,9 +1,9 @@
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { updateSearch } from '../../store/searchSlice';
+import { updateSearch } from '../../store/searchSlice/searchSlice';
 import { ReactSearchAutocomplete } from 'react-search-autocomplete';
-import { fetchSearchResults } from '../../store/showsThunks';
-import { selectTvShows } from '../../store/showsSlice';
+import { fetchSearchResults } from '../../store/showsSlice/showsThunks';
+import { selectTvShows } from '../../store/showsSlice/showsSlice';
 import { ApiShow } from '../../types';
 import { useNavigate } from 'react-router-dom';
 

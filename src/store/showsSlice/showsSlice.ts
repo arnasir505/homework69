@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ApiShow } from '../types';
+import { ApiShow } from '../../types';
 import { fetchSearchResults } from './showsThunks';
-import { RootState } from '../app/store';
+import { RootState } from '../../app/store';
 
 interface ShowsState {
   items: ApiShow[];
@@ -27,8 +27,8 @@ const showsSlice = createSlice({
       })
       .addCase(fetchSearchResults.fulfilled, (state, action) => {
         state.loading = false;
-        const formattedShows = action.payload.map(key => (key.show))
-        state.items = formattedShows
+        const formattedShows = action.payload.map((key) => key.show);
+        state.items = formattedShows;
       })
       .addCase(fetchSearchResults.rejected, (state) => {
         state.loading = false;

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axiosApi from '../axiosApi';
-import { RootState } from '../app/store';
-import { ApiShows } from '../types';
+import axiosApi from '../../axiosApi';
+import { RootState } from '../../app/store';
+import { ApiShows } from '../../types';
 
 export const fetchSearchResults = createAsyncThunk<
   ApiShows[],
