@@ -1,5 +1,6 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { fetchShowData } from './showThunks';
+import { RootState } from '../../app/store';
 
 interface ShowState {
   data: {
@@ -54,3 +55,4 @@ const showSlice = createSlice({
 });
 
 export const showReducer = showSlice.reducer;
+export const selectShow = (state: RootState) => state.show.data;

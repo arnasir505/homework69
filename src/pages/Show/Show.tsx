@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { fetchShowData } from '../../store/showSlice/showThunks';
+import { selectShow } from '../../store/showSlice/showSlice';
 
 const Show: React.FC = () => {
   const params = useParams();
   const dispatch = useAppDispatch();
-  console.log(params.id);
+  const { name, rating, image, summary, genres } = useAppSelector(selectShow);
 
   const fetchData = async () => {
     if (params.id) {
@@ -18,7 +19,16 @@ const Show: React.FC = () => {
   }, [params.id, dispatch]);
   return (
     <div className='container'>
-      <h1>Show info</h1>
+      <div className='card'>
+        <div className='card-body clearfix'>
+          <img src={image} alt='poster' className='float-start' />
+
+          <div className='card-title'>{name}</div>
+        </div>
+      </div>
+      <span>{rating}</span>
+      <p>{summary}</p>
+      <p>{genres}</p>
     </div>
   );
 };

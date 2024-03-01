@@ -34,6 +34,7 @@ const Search: React.FC = () => {
             items={tvShows}
             onSearch={handleOnSearch}
             onSelect={handleOnSelect}
+            styling={{zIndex: 1001}}
           />
         </div>
       </div>
