@@ -13,13 +13,14 @@ const Search: React.FC = () => {
   const tvShows = useAppSelector(selectTvShows);
 
   const handleOnSearch = async (value: string) => {
-    await dispatch(updateSearch(value));
-    await dispatch(fetchSearchResults());
+    if (value !== '') {
+      await dispatch(updateSearch(value));
+      await dispatch(fetchSearchResults());
+    }
   };
 
   const handleOnSelect = (item: ApiShow) => {
     const id = item.id.toString();
-    dispatch(updateSearch(''));
     navigate('/shows/' + id);
   };
 
