@@ -5,17 +5,24 @@ import { ReactSearchAutocomplete } from 'react-search-autocomplete';
 import { fetchSearchResults } from '../../store/showsThunks';
 import { selectTvShows } from '../../store/showsSlice';
 import { ApiShow } from '../../types';
+import { useNavigate } from 'react-router-dom';
 
 const Search: React.FC = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const tvShows = useAppSelector(selectTvShows);
 
-  const handleOnSearch = (value: string, results: ApiShow[]) => {
+  const handleOnSearch = async (value: string, results: ApiShow[]) => {
     // onSearch will have as the first callback parameter
     // the string searched and for the second the results.
     console.log(value, results);
     dispatch(updateSearch(value));
-    dispatch(fetchSearchResults());
+    await dispatch(fetchSearchResults());
+  };
+
+  const handleOnSelect = (item: ApiShow) => {
+    const id = item.id.toString();
+    navigate('/shows/' + id);
   };
 
   return (
@@ -23,7 +30,11 @@ const Search: React.FC = () => {
       <div className='row justify-content-center py-4'>
         <div className='col-lg-4'>
           <p className='fs-5 mb-1'>Search for TV Show:</p>
-          <ReactSearchAutocomplete items={tvShows} onSearch={handleOnSearch} />
+          <ReactSearchAutocomplete
+            items={tvShows}
+            onSearch={handleOnSearch}
+            onSelect={handleOnSelect}
+          />
         </div>
       </div>
     </div>
