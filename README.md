@@ -1,1 +1,1 @@
-# TV Show searching on React + Redux
+# TV Show search on React + Redux
